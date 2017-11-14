@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client.ui.gui;
+package org.academiadecodigo.snake.client.ui.graphics;
 
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.ui.simplegfx.SimpleGfxGrid;

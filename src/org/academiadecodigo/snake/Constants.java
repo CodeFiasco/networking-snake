@@ -1,6 +1,6 @@
 package org.academiadecodigo.snake;
 
-import org.academiadecodigo.snake.client.ui.gui.Gui;
+import org.academiadecodigo.snake.client.ui.graphics.Gui;
 import org.academiadecodigo.snake.client.ui.input.Input;
 
 /**

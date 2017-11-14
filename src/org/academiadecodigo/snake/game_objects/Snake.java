@@ -1,8 +1,8 @@
 package org.academiadecodigo.snake.game_objects;
 
 import org.academiadecodigo.snake.client.collision_detector.CollisionDetector;
-import org.academiadecodigo.snake.client.ui.gui.GameColor;
-import org.academiadecodigo.snake.client.ui.gui.Grid;
+import org.academiadecodigo.snake.client.ui.graphics.GameColor;
+import org.academiadecodigo.snake.client.ui.graphics.Grid;
 import org.academiadecodigo.snake.game_objects.position.Direction;
 import org.academiadecodigo.snake.game_objects.position.Position;
 

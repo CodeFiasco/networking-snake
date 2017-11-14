@@ -1,7 +1,7 @@
 package org.academiadecodigo.snake.client.ui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.snake.client.ui.gui.GameColor;
+import org.academiadecodigo.snake.client.ui.graphics.GameColor;
 
 /**
  * Created by codecadet on 14/11/17.

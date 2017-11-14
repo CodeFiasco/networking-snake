@@ -1,12 +1,11 @@
 package org.academiadecodigo.snake.client;
 
 import org.academiadecodigo.snake.Constants;
-import org.academiadecodigo.snake.client.ui.gui.GameColor;
-import org.academiadecodigo.snake.client.ui.gui.Grid;
-import org.academiadecodigo.snake.client.ui.gui.GridFactory;
+import org.academiadecodigo.snake.client.ui.graphics.GameColor;
+import org.academiadecodigo.snake.client.ui.graphics.Grid;
+import org.academiadecodigo.snake.client.ui.graphics.GridFactory;
 import org.academiadecodigo.snake.client.ui.input.InputListener;
 import org.academiadecodigo.snake.client.ui.input.InputListenerFactory;
-import org.academiadecodigo.snake.client.ui.simplegfx.KeyboardListener;
 import org.academiadecodigo.snake.client.network.Client;
 import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
 import org.academiadecodigo.snake.game_objects.Snake;
