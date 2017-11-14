@@ -4,10 +4,7 @@ import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.ui.graphics.GameColor;
 import org.academiadecodigo.snake.client.ui.graphics.Grid;
 import org.academiadecodigo.snake.client.ui.graphics.GridFactory;
-import org.academiadecodigo.snake.client.ui.input.InputListener;
-import org.academiadecodigo.snake.client.ui.input.InputListenerFactory;
-import org.academiadecodigo.snake.client.network.Client;
-import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
+import org.academiadecodigo.snake.client.network.Network;
 import org.academiadecodigo.snake.client.game_objects.Snake;
 import org.academiadecodigo.snake.client.game_objects.position.Direction;
 
@@ -19,22 +16,22 @@ import java.util.List;
  */
 public final class Game {
 
+    private static Game instance;
+
     public static final int WIDTH = Constants.GAME_WIDTH / Constants.SQUARE_SIZE;
     public static final int HEIGHT = Constants.GAME_HEIGHT / Constants.SQUARE_SIZE;
 
-    private static Game instance;
-
     private Grid grid;
-    private int playerId;
     private List<Snake> snakes;
 
-    private Client network;
-    private InputListener inputListener;
+    private Network network;
+    private InputSwitch inputSwitch;
 
     private Game() {
-        network = new Client();
+        network = new Network();
+        inputSwitch = new InputSwitch(network);
+
         grid = GridFactory.getGrid();
-        inputListener = InputListenerFactory.getInputListener();
         snakes = new ArrayList<>();
     }
 
@@ -50,16 +47,6 @@ public final class Game {
     public void init() {
         grid.init(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         network.start();
-    }
-
-    public void start() {
-
-
-
-    }
-
-    public void keyEvent(int key) {
-        network.sendMessage((new SnakeDirectionChangeEvent(playerId, Direction.getDirectionByKeyValue(key))).toString());
     }
 
     public void createSnake(int id, int x, int y, Direction direction) {
@@ -78,14 +65,6 @@ public final class Game {
     }
 
     public void setPlayerId(int playerId) {
-        this.playerId = playerId;
-    }
-
-    public int getWidth() {
-        return WIDTH;
-    }
-
-    public int getHeight() {
-        return HEIGHT;
+        inputSwitch.setPlayerId(playerId);
     }
 }

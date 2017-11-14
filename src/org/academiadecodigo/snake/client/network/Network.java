@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class Client {
+public class Network {
 
     private Socket socket;
     private PrintWriter out;
@@ -20,7 +20,7 @@ public class Client {
 
     public void start(String ipAddress) {
 
-        socket = ClientHelper.establishConnection(ipAddress, Constants.PORT_NUMBER);
+        socket = NetworkHelper.establishConnection(ipAddress, Constants.PORT_NUMBER);
 
         try {
             out = new PrintWriter(socket.getOutputStream(), true);
@@ -29,7 +29,7 @@ public class Client {
             e.printStackTrace();
         }
 
-        new Thread(new ClientListener(socket)).start();
+        new Thread(new NetworkListener(socket)).start();
 
     }
 

@@ -8,11 +8,11 @@ import org.academiadecodigo.snake.client.ui.simplegfx.KeyboardListener;
  */
 public class InputListenerFactory {
 
-    private static Input input = Constants.DEFAULT_INPUT;
+    private static InputLibrary inputLibrary = Constants.DEFAULT_INPUT_LIBRARY;
 
     public static InputListener getInputListener() {
 
-        switch (input) {
+        switch (inputLibrary) {
 
             case SIMPLE_GFX:
                 return new KeyboardListener();
@@ -22,7 +22,7 @@ public class InputListenerFactory {
         }
     }
 
-    public static void setInputLibrary(Input library) {
-        input = library;
+    public static void setInputLibrary(InputLibrary library) {
+        inputLibrary = library;
     }
 }

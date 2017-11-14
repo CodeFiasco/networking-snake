@@ -13,7 +13,7 @@ import java.net.Socket;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class ClientHelper {
+public class NetworkHelper {
 
     public static Socket establishConnection(String ipAddress, int portNumber) {
 
@@ -49,7 +49,6 @@ public class ClientHelper {
         switch (eventType) {
 
             case GAME_START:
-                Game.getInstance().start();
                 break;
 
             case PLAYER_ASSIGN:

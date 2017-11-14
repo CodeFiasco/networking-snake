@@ -43,7 +43,7 @@ public class ServerHelper {
             out.println(message);
 
         } catch (IOException e) {
-            System.err.println("Client socket closed: " + e.getMessage());
+            System.err.println("Network socket closed: " + e.getMessage());
             e.getStackTrace();
         }
 

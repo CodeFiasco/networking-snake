@@ -8,12 +8,12 @@ import java.net.Socket;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class ClientListener implements Runnable {
+public class NetworkListener implements Runnable {
 
     private Socket socket;
     private BufferedReader bf;
 
-    public ClientListener(Socket socket) {
+    public NetworkListener(Socket socket) {
         this.socket = socket;
 
         try {
@@ -29,13 +29,13 @@ public class ClientListener implements Runnable {
 
         while (!socket.isClosed()) {
 
-            String message = ClientHelper.listenMessage(bf);
+            String message = NetworkHelper.listenMessage(bf);
 
             if (message == null) {
                 break;
             }
 
-            ClientHelper.interpretMessage(message);
+            NetworkHelper.interpretMessage(message);
         }
     }
 }

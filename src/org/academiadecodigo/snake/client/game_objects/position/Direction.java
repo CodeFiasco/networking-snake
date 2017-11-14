@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.client.game_objects.position;
 
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.snake.client.ui.input.Input;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -19,20 +20,20 @@ public enum Direction {
         this.vertical = vertical;
     }
 
-    public static Direction getDirectionByKeyValue(int keyValue) {
+    public static Direction getDirectionByInput(Input input) {
 
-        switch (keyValue) {
+        switch (input) {
 
-            case KeyboardEvent.KEY_UP:
+            case UP_ARROW:
                 return UP;
 
-            case KeyboardEvent.KEY_RIGHT:
+            case RIGHT_ARROW:
                 return RIGHT;
 
-            case KeyboardEvent.KEY_DOWN:
+            case DOWN_ARROW:
                 return DOWN;
 
-            case KeyboardEvent.KEY_LEFT:
+            case LEFT_ARROW:
                 return LEFT;
         }
 

@@ -1,7 +1,7 @@
 package org.academiadecodigo.snake;
 
 import org.academiadecodigo.snake.client.ui.graphics.Gui;
-import org.academiadecodigo.snake.client.ui.input.Input;
+import org.academiadecodigo.snake.client.ui.input.InputLibrary;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -16,7 +16,7 @@ public class Constants {
     public static final int EVENT_TYPE_SLOT = 0;
 
     public static final Gui DEFAULT_GUI = Gui.SIMPLE_GFX;
-    public static final Input DEFAULT_INPUT = Input.SIMPLE_GFX;
+    public static final InputLibrary DEFAULT_INPUT_LIBRARY = InputLibrary.SIMPLE_GFX;
 
     public static final int GAME_WIDTH = 500;
     public static final int GAME_HEIGHT = 500;

@@ -1,9 +1,8 @@
 package org.academiadecodigo.snake.client.ui.input;
 
-/**
- * Created by codecadet on 14/11/17.
- */
 public enum Input {
-
-    SIMPLE_GFX
+    UP_ARROW,
+    RIGHT_ARROW,
+    DOWN_ARROW,
+    LEFT_ARROW
 }
