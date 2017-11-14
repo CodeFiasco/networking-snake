@@ -1,6 +1,6 @@
 package org.academiadecodigo.snake.client;
 
-import org.academiadecodigo.snake.client.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.position.Direction;
 import org.academiadecodigo.snake.client.network.Network;
 import org.academiadecodigo.snake.client.ui.input.Input;
 import org.academiadecodigo.snake.client.ui.input.InputHandler;

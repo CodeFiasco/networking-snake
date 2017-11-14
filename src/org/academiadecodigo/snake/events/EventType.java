@@ -8,9 +8,8 @@ public enum EventType {
     GAME_START,
     PLAYER_ASSIGN,
     CREATE_SNAKE,
-    MOVE_EVENT,
+    OCCUPY_SQUARE,
     SNAKE_DIRECTION_CHANGE,
-    PLAYER_DEAD,
     GAME_OVER;
 
     public static EventType parseEvent(int eventNumber) {

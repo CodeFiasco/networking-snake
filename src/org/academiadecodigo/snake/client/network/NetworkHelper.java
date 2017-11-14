@@ -3,8 +3,9 @@ package org.academiadecodigo.snake.client.network;
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.Utils;
 import org.academiadecodigo.snake.client.Game;
+import org.academiadecodigo.snake.client.ui.graphics.GameColor;
 import org.academiadecodigo.snake.events.EventType;
-import org.academiadecodigo.snake.client.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.position.Direction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,16 +60,9 @@ public class NetworkHelper {
                 Game.getInstance().setPlayerId(arguments[1]);
                 break;
 
-            case CREATE_SNAKE:
-                Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3], Direction.values()[arguments[4]]);
+            case OCCUPY_SQUARE:
+                Game.getInstance().occupySquare(arguments[1], arguments[2], arguments[3]);
                 break;
-
-            case MOVE_EVENT:
-                Game.getInstance().moveObjects();
-                break;
-
-            case SNAKE_DIRECTION_CHANGE:
-                Game.getInstance().changeSnakeDirection(arguments[1], Direction.values()[arguments[2]]);
         }
     }
 }

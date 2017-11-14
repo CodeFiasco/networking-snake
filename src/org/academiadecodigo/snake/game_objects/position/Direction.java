@@ -1,6 +1,5 @@
-package org.academiadecodigo.snake.client.game_objects.position;
+package org.academiadecodigo.snake.game_objects.position;
 
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.snake.client.ui.input.Input;
 
 /**

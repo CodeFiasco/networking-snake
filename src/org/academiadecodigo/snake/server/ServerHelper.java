@@ -2,7 +2,7 @@ package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.Utils;
-import org.academiadecodigo.snake.client.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.position.Direction;
 import org.academiadecodigo.snake.events.Event;
 import org.academiadecodigo.snake.events.EventType;
 import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
@@ -78,11 +78,7 @@ public class ServerHelper {
         switch (eventType) {
 
             case SNAKE_DIRECTION_CHANGE:
-                Server.getInstance().broadcastEvent(new SnakeDirectionChangeEvent(arguments[1], Direction.values()[arguments[2]]));
-                break;
-
-            case PLAYER_DEAD:
-                Server.getInstance().playerDied();
+                Server.getInstance().changeSnakeDirection(arguments[1], arguments[2]);
                 break;
         }
     }

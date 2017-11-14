@@ -1,7 +1,7 @@
 package org.academiadecodigo.snake.client.collision_detector;
 
-import org.academiadecodigo.snake.client.game_objects.Snake;
-import org.academiadecodigo.snake.client.game_objects.position.Position;
+import org.academiadecodigo.snake.game_objects.Snake;
+import org.academiadecodigo.snake.game_objects.position.Position;
 
 import java.util.List;
 

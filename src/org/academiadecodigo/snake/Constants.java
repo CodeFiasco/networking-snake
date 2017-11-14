@@ -9,7 +9,7 @@ import org.academiadecodigo.snake.client.ui.input.InputLibrary;
 public class Constants {
 
     public static final int PORT_NUMBER = 8080;
-    public static final int DEFAULT_NUMBER_OF_PLAYERS = 2;
+    public static final int DEFAULT_NUMBER_OF_PLAYERS = 1;
 
     public static final String DEFAULT_IP_ADDRESS = "localhost";
     public static final String EVENT_ARGUMENT_SEPARATOR = " ";

@@ -1,10 +1,10 @@
-package org.academiadecodigo.snake.client.game_objects;
+package org.academiadecodigo.snake.game_objects;
 
 import org.academiadecodigo.snake.client.collision_detector.CollisionDetector;
 import org.academiadecodigo.snake.client.ui.graphics.GameColor;
 import org.academiadecodigo.snake.client.ui.graphics.Grid;
-import org.academiadecodigo.snake.client.game_objects.position.Direction;
-import org.academiadecodigo.snake.client.game_objects.position.Position;
+import org.academiadecodigo.snake.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.position.Position;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,26 +15,18 @@ import java.util.List;
 public class Snake {
 
     private List<Position> positions;
-    private GameColor gameColor;
-    private Grid grid;
 
-    private int col;
-    private int row;
+    private Position currentPosition;
     private Direction direction;
 
     private boolean dead;
 
-    public Snake(Grid grid, int col, int row, Direction direction, GameColor gameColor) {
+    public Snake(int col, int row, Direction direction, GameColor gameColor) {
+
+        currentPosition = new Position(col, row);
+
         positions = new LinkedList<>();
-
-        this.col = col;
-        this.row = row;
-
-        positions.add(new Position(col, row));
-        this.gameColor = gameColor;
-
-        this.grid = grid;
-        grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
+        positions.add(currentPosition);
 
         this.direction = direction;
     }
@@ -45,8 +37,8 @@ public class Snake {
             return;
         }
 
-        col += direction.getHorizontal();
-        row += direction.getVertical();
+        int col = currentPosition.getCol() + direction.getHorizontal();
+        int row = currentPosition.getRow() + direction.getVertical();
 
         Position newPosition = new Position(col, row);
 
@@ -56,7 +48,7 @@ public class Snake {
         }
 
         positions.add(newPosition);
-        grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
+        currentPosition = newPosition;
     }
 
     public boolean isAt(Position position) {
@@ -79,5 +71,9 @@ public class Snake {
 
     public boolean isDead() {
         return dead;
+    }
+
+    public Position getHead() {
+        return currentPosition;
     }
 }

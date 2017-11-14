@@ -3,7 +3,9 @@ package org.academiadecodigo.snake.server;
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.Game;
 import org.academiadecodigo.snake.events.*;
-import org.academiadecodigo.snake.client.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.SnakeController;
+import org.academiadecodigo.snake.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.position.Position;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,7 +15,7 @@ import java.util.TimerTask;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class Server {
+public final class Server {
 
     private static Server instance;
 
@@ -22,6 +24,8 @@ public class Server {
 
     private int numberOfPlayers;
     private int deadPlayers;
+
+    private SnakeController snakeController;
 
     private Timer moveTimer;
 
@@ -34,6 +38,7 @@ public class Server {
 
     private Server() {
         deadPlayers = 0;
+        snakeController = new SnakeController();
     }
 
     public synchronized static Server getInstance() {
@@ -83,11 +88,13 @@ public class Server {
 
     private void createInitialObjects() {
         for (int i = 0; i < numberOfPlayers; i++) {
-            ServerHelper.broadcast(clientSockets, new CreateSnakeEvent(i,
-                    initialSnakePositions[i][0],
-                    initialSnakePositions[i][1],
-                    initialSnakePositions[i][2]));
 
+            int newSnakeCol = initialSnakePositions[i][0];
+            int newSnakeRow = initialSnakePositions[i][1];
+            Direction newSnakeDirection = Direction.values()[initialSnakePositions[i][2]];
+
+            ServerHelper.broadcast(clientSockets, new OccupySquareEvent(i, newSnakeCol, newSnakeRow));
+            snakeController.addSnake(i, newSnakeCol, newSnakeRow, newSnakeDirection);
         }
     }
 
@@ -99,10 +106,20 @@ public class Server {
             @Override
             public void run() {
 
-                ServerHelper.broadcast(clientSockets, new MoveEvent());
+                snakeController.moveSnakes();
+                broadcastNewPositions();
 
             }
         }, Constants.GAME_TIMER, Constants.GAME_TIMER);
+    }
+
+    private void broadcastNewPositions() {
+
+        Position[] newPositions = snakeController.getSnakeHeadPositions();
+
+        for (int i = 0; i < newPositions.length; i++) {
+            broadcastEvent(new OccupySquareEvent(i, newPositions[i].getCol(), newPositions[i].getRow()));
+        }
     }
 
     public void playerDied() {
@@ -118,5 +135,9 @@ public class Server {
 
     public void broadcastEvent(Event event) {
         ServerHelper.broadcast(clientSockets, event);
+    }
+
+    public void changeSnakeDirection(int snakeId, int directionOrdinal) {
+        snakeController.changeSnakeDirection(snakeId, Direction.values()[directionOrdinal]);
     }
 }

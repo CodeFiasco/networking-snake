@@ -20,9 +20,9 @@ public class SimpleGfxGrid implements Grid {
     }
 
     @Override
-    public void addSquare(int x, int y, GameColor color) {
+    public void addSquare(int col, int row, GameColor color) {
 
-        Rectangle square = new Rectangle(x, y, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
+        Rectangle square = new Rectangle(colToX(col), rowToY(row), Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
         square.setColor(SimpleGfxColorConverter.getColor(color));
         square.fill();
     }
