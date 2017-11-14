@@ -1,10 +1,10 @@
 package org.academiadecodigo.snake.client;
 
 import org.academiadecodigo.snake.Constants;
-import org.academiadecodigo.snake.client.gui.GameColor;
-import org.academiadecodigo.snake.client.gui.Grid;
-import org.academiadecodigo.snake.client.gui.GridFactory;
-import org.academiadecodigo.snake.client.keyboard.KeyboardListener;
+import org.academiadecodigo.snake.client.ui.gui.GameColor;
+import org.academiadecodigo.snake.client.ui.gui.Grid;
+import org.academiadecodigo.snake.client.ui.gui.GridFactory;
+import org.academiadecodigo.snake.client.ui.keyboard.KeyboardListener;
 import org.academiadecodigo.snake.client.network.Client;
 import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
 import org.academiadecodigo.snake.game_objects.Snake;
@@ -69,7 +69,7 @@ public final class Game {
     public void moveObjects() {
 
         for (Snake s : snakes) {
-            s.grow();
+            s.grow(snakes);
         }
     }
 

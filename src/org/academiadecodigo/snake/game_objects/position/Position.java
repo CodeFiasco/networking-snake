@@ -13,6 +13,10 @@ public class Position {
         this.row = row;
     }
 
+    public boolean equals(int col, int row) {
+        return this.col == col && this.row == row;
+    }
+
     public int getCol() {
         return col;
     }

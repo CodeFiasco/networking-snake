@@ -3,13 +3,11 @@ package org.academiadecodigo.snake.client.network;
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.Utils;
 import org.academiadecodigo.snake.client.Game;
-import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.events.EventType;
 import org.academiadecodigo.snake.game_objects.position.Direction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 /**

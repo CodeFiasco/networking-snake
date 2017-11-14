@@ -1,6 +1,6 @@
 package org.academiadecodigo.snake;
 
-import org.academiadecodigo.snake.client.gui.Gui;
+import org.academiadecodigo.snake.client.ui.gui.Gui;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -19,6 +19,6 @@ public class Constants {
     public static final int GAME_WIDTH = 500;
     public static final int GAME_HEIGHT = 500;
     public static final int SQUARE_SIZE = 25;
-    public static final int GAME_TIMER = 1000;
+    public static final int GAME_TIMER = 500;
 
 }

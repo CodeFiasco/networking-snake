@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client.keyboard;
+package org.academiadecodigo.snake.client.ui.keyboard;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;

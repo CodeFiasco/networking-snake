@@ -1,9 +1,9 @@
-package org.academiadecodigo.snake.client.gui.simplegfx;
+package org.academiadecodigo.snake.client.ui.gui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.snake.Constants;
-import org.academiadecodigo.snake.client.gui.GameColor;
-import org.academiadecodigo.snake.client.gui.Grid;
+import org.academiadecodigo.snake.client.ui.gui.GameColor;
+import org.academiadecodigo.snake.client.ui.gui.Grid;
 
 /**
  * Created by codecadet on 14/11/17.

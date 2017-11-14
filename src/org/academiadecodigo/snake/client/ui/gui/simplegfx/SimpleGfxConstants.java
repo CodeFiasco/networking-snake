@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client.gui.simplegfx;
+package org.academiadecodigo.snake.client.ui.gui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 

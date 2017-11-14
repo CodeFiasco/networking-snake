@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client.gui;
+package org.academiadecodigo.snake.client.ui.gui;
 
 /**
  * Created by codecadet on 14/11/17.
