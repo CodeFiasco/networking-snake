@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.client;
 
 import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.client.gui.Grid;
 import org.academiadecodigo.snake.client.gui.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.snake.client.network.Client;
@@ -33,6 +34,8 @@ public class Game {
     public void init() {
         grid.init(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         network.start();
+
+        grid.addSquare(10, 10, 20, GameColor.GREEN);
     }
 
     public void start() {

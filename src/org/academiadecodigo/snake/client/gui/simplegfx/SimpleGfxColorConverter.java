@@ -6,16 +6,16 @@ import org.academiadecodigo.snake.client.gui.GameColor;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class ColorConverter {
+public class SimpleGfxColorConverter {
 
-    private Color[] colors = {
+    private static Color[] colors = {
             Color.GREEN,
             Color.RED,
             Color.YELLOW,
             Color.BLUE
     };
 
-    public Color getColor(GameColor gameColor) {
+    public static Color getColor(GameColor gameColor) {
 
         if (gameColor.ordinal() >= colors.length) {
             return SimpleGfxConstants.DEFAULT_COLOR;

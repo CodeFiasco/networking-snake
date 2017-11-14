@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.client.gui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.client.gui.Grid;
 
 /**
@@ -16,4 +17,14 @@ public class SimpleGfxGrid implements Grid {
         grid = new Rectangle(SimpleGfxConstants.PADDING, SimpleGfxConstants.PADDING, width, height);
         grid.fill();
     }
+
+    @Override
+    public void addSquare(int x, int y, int size, GameColor color) {
+
+        Rectangle square = new Rectangle(SimpleGfxConstants.PADDING + x, SimpleGfxConstants.PADDING + y, size, size);
+        square.setColor(SimpleGfxColorConverter.getColor(color));
+        square.fill();
+    }
+
+
 }

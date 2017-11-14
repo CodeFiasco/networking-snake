@@ -6,4 +6,5 @@ package org.academiadecodigo.snake.client.gui;
 public interface Grid {
 
     void init(int width, int height);
+    void addSquare(int x, int y, int size, GameColor color);
 }
