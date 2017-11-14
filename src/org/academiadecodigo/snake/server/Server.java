@@ -18,7 +18,7 @@ public class Server {
 
     public static void main(String[] args) {
 
-        int numberOfPlayers = 2;
+        int numberOfPlayers = Constants.DEFAULT_NUMBER_OF_PLAYERS;
 
         if (args.length > 0) {
             try {

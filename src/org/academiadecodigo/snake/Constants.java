@@ -6,5 +6,6 @@ package org.academiadecodigo.snake;
 public class Constants {
 
     public static final int PORT_NUMBER = 8080;
+    public static final int DEFAULT_NUMBER_OF_PLAYERS = 1;
 
 }
