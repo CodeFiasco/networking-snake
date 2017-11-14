@@ -21,7 +21,8 @@ public class ClientListener implements Runnable {
         while (!socket.isClosed() && message != null) {
 
             message = ClientHelper.listenMessage(socket);
-        }
+            ClientHelper.interpretMessage(message);
 
+        }
     }
 }

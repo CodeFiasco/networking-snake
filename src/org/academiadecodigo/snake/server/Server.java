@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.events.GameStartEvent;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -44,6 +45,8 @@ public class Server {
         clientSockets = new Socket[numberOfPlayers];
 
         waitClients();
+
+        ServerHelper.broadcast(clientSockets, (new GameStartEvent()).toString());
     }
 
     private void waitClients() {

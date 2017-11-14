@@ -22,6 +22,10 @@ public class Client {
         new Client().start(ipAddress);
     }
 
+    public void start() {
+        start(Constants.DEFAULT_IP_ADDRESS);
+    }
+
     public void start(String ipAddress) {
 
         socket = ClientHelper.establishConnection(ipAddress, Constants.PORT_NUMBER);

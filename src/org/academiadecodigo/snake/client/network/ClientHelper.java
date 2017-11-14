@@ -1,5 +1,10 @@
 package org.academiadecodigo.snake.client.network;
 
+import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.Utils;
+import org.academiadecodigo.snake.client.Game;
+import org.academiadecodigo.snake.events.EventType;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,5 +40,18 @@ public class ClientHelper {
         }
 
         return null;
+    }
+
+    public static void interpretMessage(String message) {
+
+        int[] arguments = Utils.parseArguments(message.split(" "));
+        EventType eventType = EventType.parseEvent(arguments[Constants.EVENT_TYPE_SLOT]);
+
+        switch (eventType) {
+
+            case GAME_START:
+                Game.getInstance().start();
+                break;
+        }
     }
 }
