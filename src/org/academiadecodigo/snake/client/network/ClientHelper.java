@@ -56,6 +56,7 @@ public class ClientHelper {
 
             case PLAYER_ASSIGN:
                 Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3]);
+                break;
 
             case OCCUPY_POSITION:
                 Game.getInstance().addSquare(arguments[1], arguments[2], GameColor.values()[arguments[3]]);

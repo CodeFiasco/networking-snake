@@ -18,6 +18,11 @@ public class Server {
     private int numberOfPlayers;
     private Socket[] clientSockets;
 
+    private int[][] initialSnakePositions = {
+            { 1, 1 },
+            { 18, 18}
+    };
+
     public static void main(String[] args) {
 
         int numberOfPlayers = Constants.DEFAULT_NUMBER_OF_PLAYERS;
@@ -55,7 +60,7 @@ public class Server {
         for (int i = 0; i < numberOfPlayers; i++) {
 
             clientSockets[i] = getClientConnection();
-            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i)).toString());
+            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i, initialSnakePositions[i][0], initialSnakePositions[i][1])).toString());
             new Thread(new ClientDispatcher(clientSockets[i])).start();
 
         }

@@ -28,13 +28,13 @@ public class SimpleGfxGrid implements Grid {
     }
 
     @Override
-    public int xToCol(int x) {
-        return x * Constants.SQUARE_SIZE + SimpleGfxConstants.PADDING;
+    public int colToX(int col) {
+        return col * Constants.SQUARE_SIZE + SimpleGfxConstants.PADDING;
     }
 
     @Override
-    public int yToRow(int y) {
-        return y * Constants.SQUARE_SIZE + SimpleGfxConstants.PADDING;
+    public int rowToY(int row) {
+        return row * Constants.SQUARE_SIZE + SimpleGfxConstants.PADDING;
     }
 
 

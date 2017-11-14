@@ -23,11 +23,11 @@ public class Snake {
         this.gameColor = gameColor;
 
         this.grid = grid;
-        grid.addSquare(col, row, gameColor);
+        grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
     }
 
     public void grow(int col, int row) {
         positions.add(new Position(col, row));
-        grid.addSquare(col, row, gameColor);
+        grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
     }
 }
