@@ -48,4 +48,8 @@ public final class Game {
     public void setPlayerId(int id) {
         playerId = id;
     }
+
+    public int getPlayerId() {
+        return playerId;
+    }
 }
