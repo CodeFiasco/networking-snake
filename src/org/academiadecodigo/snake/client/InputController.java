@@ -8,13 +8,13 @@ import org.academiadecodigo.snake.client.ui.input.InputListener;
 import org.academiadecodigo.snake.client.ui.input.InputListenerFactory;
 import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
 
-public class InputSwitch implements InputHandler {
+public class InputController implements InputHandler {
 
     private InputListener inputListener;
     private Network network;
     private int playerId;
 
-    public InputSwitch(Network network) {
+    public InputController(Network network) {
         this.network = network;
 
         inputListener = InputListenerFactory.getInputListener();

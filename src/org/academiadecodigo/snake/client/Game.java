@@ -22,17 +22,17 @@ public final class Game {
     public static final int HEIGHT = Constants.GAME_HEIGHT / Constants.SQUARE_SIZE;
 
     private Grid grid;
-    private List<Snake> snakes;
+    private SnakeController snakeController;
 
     private Network network;
-    private InputSwitch inputSwitch;
+    private InputController inputController;
 
     private Game() {
         network = new Network();
-        inputSwitch = new InputSwitch(network);
+        inputController = new InputController(network);
 
         grid = GridFactory.getGrid();
-        snakes = new ArrayList<>();
+        snakeController = new SnakeController(grid);
     }
 
     public static synchronized Game getInstance() {
@@ -50,21 +50,18 @@ public final class Game {
     }
 
     public void createSnake(int id, int x, int y, Direction direction) {
-        snakes.add(new Snake(grid, x, y, direction, GameColor.values()[id]));
+        snakeController.addSnake(id, x, y, direction);
     }
 
     public void moveObjects() {
-
-        for (Snake s : snakes) {
-            s.grow(snakes);
-        }
+        snakeController.moveSnakes();
     }
 
     public void changeSnakeDirection(int id, Direction direction) {
-        snakes.get(id).setDirection(direction);
+        snakeController.changeSnakeDirection(id, direction);
     }
 
     public void setPlayerId(int playerId) {
-        inputSwitch.setPlayerId(playerId);
+        inputController.setPlayerId(playerId);
     }
 }
