@@ -48,7 +48,7 @@ public class ClientDispatcher implements Runnable {
             return reader.readLine();
 
         } catch (IOException e) {
-            System.err.println("Socket listen fail: " + e.getMessage());
+            System.err.println(e.getMessage());
             e.getStackTrace();
         }
 
