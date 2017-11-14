@@ -4,7 +4,9 @@ import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.client.gui.Grid;
 import org.academiadecodigo.snake.client.gui.GridFactory;
+import org.academiadecodigo.snake.client.keyboard.KeyboardListener;
 import org.academiadecodigo.snake.client.network.Client;
+import org.academiadecodigo.snake.game_objects.Snake;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -15,12 +17,15 @@ public final class Game {
 
     private Grid grid;
     private int playerId;
+    private Snake snake;
 
     private Client network;
+    private KeyboardListener keyboardListener;
 
     private Game() {
         network = new Client();
         grid = GridFactory.getGrid();
+        keyboardListener = new KeyboardListener();
     }
 
     public static synchronized Game getInstance() {
@@ -38,15 +43,23 @@ public final class Game {
     }
 
     public void start() {
-        System.out.println("start");
+
+
+
     }
 
     public void addSquare(int x, int y, GameColor color) {
         grid.addSquare(x, y, color);
     }
 
-    public void setPlayerId(int id) {
+    public void keyEvent(int key) {
+        System.out.println(key);
+    }
+
+    public void createSnake(int id, int x, int y) {
         playerId = id;
+
+        snake = new Snake(grid, x, y, GameColor.values()[id]);
     }
 
     public int getPlayerId() {
