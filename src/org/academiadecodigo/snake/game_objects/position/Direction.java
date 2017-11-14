@@ -1,5 +1,7 @@
 package org.academiadecodigo.snake.game_objects.position;
 
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+
 /**
  * Created by codecadet on 14/11/17.
  */
@@ -15,6 +17,26 @@ public enum Direction {
     Direction(int horizontal, int vertical) {
         this.horizontal = horizontal;
         this.vertical = vertical;
+    }
+
+    public static Direction getDirectionByKeyValue(int keyValue) {
+
+        switch (keyValue) {
+
+            case KeyboardEvent.KEY_UP:
+                return UP;
+
+            case KeyboardEvent.KEY_RIGHT:
+                return RIGHT;
+
+            case KeyboardEvent.KEY_DOWN:
+                return DOWN;
+
+            case KeyboardEvent.KEY_LEFT:
+                return LEFT;
+        }
+
+        return null;
     }
 
     public Direction getOpposite() {
@@ -38,6 +60,7 @@ public enum Direction {
                 return null;
         }
     }
+
 
     public int getHorizontal() {
         return horizontal;

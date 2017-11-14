@@ -10,19 +10,34 @@ import java.net.Socket;
  */
 public class ClientDispatcher implements Runnable {
 
+    private Server server;
     private Socket clientSocket;
+    private BufferedReader reader;
 
-    public ClientDispatcher(Socket clientSocket) {
+    public ClientDispatcher(Server server, Socket clientSocket) {
+        this.server = server;
         this.clientSocket = clientSocket;
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
 
-        String message = "";
+        while (!clientSocket.isClosed()) {
 
-        while (!clientSocket.isClosed() && message != null) {
-            message = listenSocket();
+            String message = listenSocket();
+
+            if (message == null) {
+                break;
+            }
+
+            server.broadcast(message);
         }
 
     }
@@ -30,9 +45,7 @@ public class ClientDispatcher implements Runnable {
     private String listenSocket() {
 
         try {
-
-            BufferedReader bf = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            return bf.readLine();
+            return reader.readLine();
 
         } catch (IOException e) {
             System.err.println("Socket listen fail: " + e.getMessage());

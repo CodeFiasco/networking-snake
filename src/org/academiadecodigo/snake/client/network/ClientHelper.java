@@ -65,6 +65,9 @@ public class ClientHelper {
             case MOVE_EVENT:
                 Game.getInstance().moveObjects();
                 break;
+
+            case SNAKE_DIRECTION_CHANGE:
+                Game.getInstance().changeSnakeDirection(arguments[1], Direction.values()[arguments[2]]);
         }
     }
 }

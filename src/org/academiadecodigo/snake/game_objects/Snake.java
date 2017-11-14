@@ -44,4 +44,8 @@ public class Snake {
         positions.add(new Position(col, row));
         grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
     }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }

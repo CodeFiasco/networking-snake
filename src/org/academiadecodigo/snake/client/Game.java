@@ -6,6 +6,7 @@ import org.academiadecodigo.snake.client.gui.Grid;
 import org.academiadecodigo.snake.client.gui.GridFactory;
 import org.academiadecodigo.snake.client.keyboard.KeyboardListener;
 import org.academiadecodigo.snake.client.network.Client;
+import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
 import org.academiadecodigo.snake.game_objects.Snake;
 import org.academiadecodigo.snake.game_objects.position.Direction;
 
@@ -58,7 +59,7 @@ public final class Game {
     }
 
     public void keyEvent(int key) {
-        System.out.println(key);
+        network.sendMessage((new SnakeDirectionChangeEvent(playerId, Direction.getDirectionByKeyValue(key))).toString());
     }
 
     public void createSnake(int id, int x, int y, Direction direction) {
@@ -72,11 +73,12 @@ public final class Game {
         }
     }
 
+    public void changeSnakeDirection(int id, Direction direction) {
+        snakes.get(id).setDirection(direction);
+    }
+
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
-    public int getPlayerId() {
-        return playerId;
-    }
 }

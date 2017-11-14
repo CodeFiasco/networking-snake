@@ -65,7 +65,7 @@ public class Server {
 
             clientSockets[i] = getClientConnection();
             ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i)).toString());
-            new Thread(new ClientDispatcher(clientSockets[i])).start();
+            new Thread(new ClientDispatcher(this, clientSockets[i])).start();
 
         }
     }
@@ -111,5 +111,9 @@ public class Server {
 
             }
         }, Constants.GAME_TIMER, Constants.GAME_TIMER);
+    }
+
+    public void broadcast(String message) {
+        ServerHelper.broadcast(clientSockets, message);
     }
 }
