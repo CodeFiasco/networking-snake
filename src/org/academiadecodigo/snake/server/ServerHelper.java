@@ -23,9 +23,9 @@ public class ServerHelper {
 
     }
 
-    public static void broadcast(Socket[] clientScokets, String message) {
+    public static void broadcast(Socket[] clientSockets, String message) {
 
-        for (Socket s : clientScokets) {
+        for (Socket s : clientSockets) {
             sendMessageTo(s, message);
         }
 
