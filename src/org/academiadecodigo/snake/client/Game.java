@@ -19,9 +19,10 @@ import java.util.List;
  */
 public final class Game {
 
+    public static final int WIDTH = Constants.GAME_WIDTH / Constants.SQUARE_SIZE;
+    public static final int HEIGHT = Constants.GAME_HEIGHT / Constants.SQUARE_SIZE;
+
     private static Game instance;
-    private int width = Constants.GAME_WIDTH / Constants.SQUARE_SIZE;
-    private int height = Constants.GAME_HEIGHT / Constants.SQUARE_SIZE;
 
     private Grid grid;
     private int playerId;
@@ -81,10 +82,10 @@ public final class Game {
     }
 
     public int getWidth() {
-        return width;
+        return WIDTH;
     }
 
     public int getHeight() {
-        return height;
+        return HEIGHT;
     }
 }

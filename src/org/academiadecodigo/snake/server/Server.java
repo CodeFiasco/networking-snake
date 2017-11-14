@@ -1,12 +1,12 @@
 package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.client.Game;
 import org.academiadecodigo.snake.events.CreateSnakeEvent;
 import org.academiadecodigo.snake.events.MoveEvent;
 import org.academiadecodigo.snake.events.PlayerAssignEvent;
 import org.academiadecodigo.snake.client.game_objects.position.Direction;
 
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Timer;
@@ -23,32 +23,18 @@ public class Server {
     private Socket[] clientSockets;
 
     private int[][] initialSnakePositions = {
-            { 1, 1, Direction.RIGHT.ordinal()},
-            { 18, 18, Direction.LEFT.ordinal()}
+            { 1,                1,                  Direction.RIGHT.ordinal() },
+            { Game.WIDTH - 2,   Game.HEIGHT - 2,    Direction.LEFT.ordinal() },
+            { Game.WIDTH - 2,   1,                  Direction.DOWN.ordinal() },
+            { 1,                Game.HEIGHT - 2,    Direction.UP.ordinal()}
     };
-
-    public static void main(String[] args) {
-
-        int numberOfPlayers = Constants.DEFAULT_NUMBER_OF_PLAYERS;
-
-        if (args.length > 0) {
-            try {
-                numberOfPlayers = Integer.parseInt(args[0]);
-            } catch (NumberFormatException e) {
-                System.err.println("Argument expected to be a number!");
-            }
-        }
-
-        new Server().start(numberOfPlayers);
-    }
 
     public void start(int numberOfPlayers) {
 
-        try {
-            serverSocket = new ServerSocket(Constants.PORT_NUMBER);
+        serverSocket = ServerHelper.createServerSocket();
 
-        } catch (IOException e) {
-            System.err.println("Could not create Server Socket: " + e.getMessage());
+        if (numberOfPlayers > initialSnakePositions.length) {
+            numberOfPlayers = initialSnakePositions.length;
         }
 
         this.numberOfPlayers = numberOfPlayers;
@@ -62,23 +48,14 @@ public class Server {
 
         for (int i = 0; i < numberOfPlayers; i++) {
 
-            clientSockets[i] = getClientConnection();
+            clientSockets[i] = ServerHelper.getClientConnection(serverSocket);
+
             ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i)).toString());
-            new Thread(new ClientDispatcher(this, clientSockets[i])).start();
+
+            Thread clientDispatcher = new Thread(new ClientDispatcher(this, clientSockets[i]));
+            clientDispatcher.start();
 
         }
-    }
-
-    private Socket getClientConnection() {
-
-        try {
-            return serverSocket.accept();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     private void gameStart() {

@@ -17,7 +17,7 @@ public class Position {
 
     public boolean isOutOfBounds() {
         return col < 0 || row < 0 ||
-                col >= Game.getInstance().getWidth() || row >= Game.getInstance().getHeight();
+                col >= Game.WIDTH || row >= Game.HEIGHT;
     }
 
     public boolean equals(Position compare) {
