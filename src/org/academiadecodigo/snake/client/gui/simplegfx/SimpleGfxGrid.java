@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.client.gui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.client.gui.Grid;
 
@@ -19,11 +20,21 @@ public class SimpleGfxGrid implements Grid {
     }
 
     @Override
-    public void addSquare(int x, int y, int size, GameColor color) {
+    public void addSquare(int x, int y, GameColor color) {
 
-        Rectangle square = new Rectangle(SimpleGfxConstants.PADDING + x, SimpleGfxConstants.PADDING + y, size, size);
+        Rectangle square = new Rectangle(SimpleGfxConstants.PADDING + x, SimpleGfxConstants.PADDING + y, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
         square.setColor(SimpleGfxColorConverter.getColor(color));
         square.fill();
+    }
+
+    @Override
+    public int xToCol(int x) {
+        return x * Constants.SQUARE_SIZE + SimpleGfxConstants.PADDING;
+    }
+
+    @Override
+    public int yToRow(int y) {
+        return y * Constants.SQUARE_SIZE + SimpleGfxConstants.PADDING;
     }
 
 

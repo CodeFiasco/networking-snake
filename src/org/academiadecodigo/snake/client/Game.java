@@ -41,6 +41,6 @@ public class Game {
     }
 
     public void addSquare(int x, int y, GameColor color) {
-        grid.addSquare(x, y, Constants.SQUARE_SIZE, color);
+        grid.addSquare(x, y, color);
     }
 }
