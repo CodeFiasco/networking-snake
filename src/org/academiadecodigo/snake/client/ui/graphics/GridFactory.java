@@ -8,11 +8,11 @@ import org.academiadecodigo.snake.client.ui.simplegfx.SimpleGfxGrid;
  */
 public class GridFactory {
 
-    private static Gui gui = Constants.DEFAULT_GUI;
+    private static GraphicLibrary graphicLibrary = Constants.DEFAULT_GRAPHIC_LIBRARY;
 
     public static Grid getGrid() {
 
-        switch (gui) {
+        switch (graphicLibrary) {
 
             case SIMPLE_GFX:
                 return new SimpleGfxGrid();
@@ -22,7 +22,7 @@ public class GridFactory {
         }
     }
 
-    public static void setGui(Gui library) {
-        gui = library;
+    public static void setGraphicLibrary(GraphicLibrary library) {
+        graphicLibrary = library;
     }
 }
