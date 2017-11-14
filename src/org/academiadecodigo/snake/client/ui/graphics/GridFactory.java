@@ -16,10 +16,9 @@ public class GridFactory {
 
             case SIMPLE_GFX:
                 return new SimpleGfxGrid();
-
-            default:
-                return new SimpleGfxGrid();
         }
+
+        return new SimpleGfxGrid();
     }
 
     public static void setGraphicLibrary(GraphicLibrary library) {

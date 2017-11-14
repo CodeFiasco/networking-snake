@@ -16,10 +16,9 @@ public class InputListenerFactory {
 
             case SIMPLE_GFX:
                 return new KeyboardListener();
-
-            default:
-                return new KeyboardListener();
         }
+
+        return new KeyboardListener();
     }
 
     public static void setInputLibrary(InputLibrary library) {
