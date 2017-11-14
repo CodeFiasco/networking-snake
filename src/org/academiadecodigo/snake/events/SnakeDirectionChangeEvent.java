@@ -1,7 +1,7 @@
 package org.academiadecodigo.snake.events;
 
 import org.academiadecodigo.snake.Constants;
-import org.academiadecodigo.snake.game_objects.position.Direction;
+import org.academiadecodigo.snake.client.game_objects.position.Direction;
 
 /**
  * Created by codecadet on 14/11/17.

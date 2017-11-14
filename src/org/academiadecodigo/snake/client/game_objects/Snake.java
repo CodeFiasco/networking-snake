@@ -1,10 +1,10 @@
-package org.academiadecodigo.snake.game_objects;
+package org.academiadecodigo.snake.client.game_objects;
 
 import org.academiadecodigo.snake.client.collision_detector.CollisionDetector;
 import org.academiadecodigo.snake.client.ui.graphics.GameColor;
 import org.academiadecodigo.snake.client.ui.graphics.Grid;
-import org.academiadecodigo.snake.game_objects.position.Direction;
-import org.academiadecodigo.snake.game_objects.position.Position;
+import org.academiadecodigo.snake.client.game_objects.position.Direction;
+import org.academiadecodigo.snake.client.game_objects.position.Position;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -48,20 +48,22 @@ public class Snake {
         col += direction.getHorizontal();
         row += direction.getVertical();
 
-        if (!CollisionDetector.isEmpty(snakes, col, row)) {
+        Position newPosition = new Position(col, row);
+
+        if (!CollisionDetector.isEmpty(snakes, newPosition) || newPosition.isOutOfBounds()) {
             dead = true;
             return;
         }
 
-        positions.add(new Position(col, row));
+        positions.add(newPosition);
         grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
     }
 
-    public boolean isAt(int col, int row) {
+    public boolean isAt(Position position) {
 
         for (Position p : positions) {
 
-            if (p.equals(col, row)) {
+            if (p.equals(position)) {
                 return true;
             }
 

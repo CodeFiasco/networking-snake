@@ -8,8 +8,8 @@ import org.academiadecodigo.snake.client.ui.input.InputListener;
 import org.academiadecodigo.snake.client.ui.input.InputListenerFactory;
 import org.academiadecodigo.snake.client.network.Client;
 import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
-import org.academiadecodigo.snake.game_objects.Snake;
-import org.academiadecodigo.snake.game_objects.position.Direction;
+import org.academiadecodigo.snake.client.game_objects.Snake;
+import org.academiadecodigo.snake.client.game_objects.position.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,8 @@ import java.util.List;
 public final class Game {
 
     private static Game instance;
+    private int width = Constants.GAME_WIDTH / Constants.SQUARE_SIZE;
+    private int height = Constants.GAME_HEIGHT / Constants.SQUARE_SIZE;
 
     private Grid grid;
     private int playerId;
@@ -55,10 +57,6 @@ public final class Game {
 
     }
 
-    public void addSquare(int col, int row, GameColor color) {
-        grid.addSquare(grid.colToX(col), grid.rowToY(row), color);
-    }
-
     public void keyEvent(int key) {
         network.sendMessage((new SnakeDirectionChangeEvent(playerId, Direction.getDirectionByKeyValue(key))).toString());
     }
@@ -82,4 +80,11 @@ public final class Game {
         this.playerId = playerId;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

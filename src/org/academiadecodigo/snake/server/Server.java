@@ -2,10 +2,9 @@ package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.events.CreateSnakeEvent;
-import org.academiadecodigo.snake.events.GameStartEvent;
 import org.academiadecodigo.snake.events.MoveEvent;
 import org.academiadecodigo.snake.events.PlayerAssignEvent;
-import org.academiadecodigo.snake.game_objects.position.Direction;
+import org.academiadecodigo.snake.client.game_objects.position.Direction;
 
 import java.io.IOException;
 import java.net.ServerSocket;
