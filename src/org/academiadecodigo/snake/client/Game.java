@@ -65,6 +65,13 @@ public final class Game {
         snakes.add(new Snake(grid, x, y, direction, GameColor.values()[id]));
     }
 
+    public void moveObjects() {
+
+        for (Snake s : snakes) {
+            s.grow();
+        }
+    }
+
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }

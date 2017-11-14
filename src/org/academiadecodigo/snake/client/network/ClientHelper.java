@@ -61,6 +61,10 @@ public class ClientHelper {
             case CREATE_SNAKE:
                 Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3], Direction.values()[arguments[4]]);
                 break;
+
+            case MOVE_EVENT:
+                Game.getInstance().moveObjects();
+                break;
         }
     }
 }

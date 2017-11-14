@@ -3,12 +3,15 @@ package org.academiadecodigo.snake.server;
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.events.CreateSnakeEvent;
 import org.academiadecodigo.snake.events.GameStartEvent;
+import org.academiadecodigo.snake.events.MoveEvent;
 import org.academiadecodigo.snake.events.PlayerAssignEvent;
 import org.academiadecodigo.snake.game_objects.position.Direction;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -81,12 +84,32 @@ public class Server {
 
     private void gameStart() {
 
+        createInitialObjects();
+        gameCycle();
+
+    }
+
+    private void createInitialObjects() {
         for (int i = 0; i < numberOfPlayers; i++) {
             ServerHelper.broadcast(clientSockets, (new CreateSnakeEvent(i,
-                                                                        initialSnakePositions[i][0],
-                                                                        initialSnakePositions[i][1],
-                                                                        initialSnakePositions[i][2])).toString());
+                    initialSnakePositions[i][0],
+                    initialSnakePositions[i][1],
+                    initialSnakePositions[i][2])).toString());
 
         }
+    }
+
+    private void gameCycle() {
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+
+            @Override
+            public void run() {
+
+                ServerHelper.broadcast(clientSockets, (new MoveEvent()).toString());
+
+            }
+        }, Constants.GAME_TIMER, Constants.GAME_TIMER);
     }
 }
