@@ -48,8 +48,8 @@ public final class Game {
 
     }
 
-    public void addSquare(int x, int y, GameColor color) {
-        grid.addSquare(x, y, color);
+    public void addSquare(int col, int row, GameColor color) {
+        grid.addSquare(grid.colToX(col), grid.rowToY(row), color);
     }
 
     public void keyEvent(int key) {
