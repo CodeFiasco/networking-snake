@@ -9,11 +9,12 @@ import org.academiadecodigo.snake.client.network.Client;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class Game {
+public final class Game {
 
     private static Game instance;
 
     private Grid grid;
+    private int playerId;
 
     private Client network;
 
@@ -42,5 +43,9 @@ public class Game {
 
     public void addSquare(int x, int y, GameColor color) {
         grid.addSquare(x, y, color);
+    }
+
+    public void setPlayerId(int id) {
+        playerId = id;
     }
 }

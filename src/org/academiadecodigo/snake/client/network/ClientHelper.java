@@ -54,6 +54,9 @@ public class ClientHelper {
                 Game.getInstance().start();
                 break;
 
+            case PLAYER_ASSIGN:
+                Game.getInstance().setPlayerId(arguments[1]);
+
             case OCCUPY_POSITION:
                 Game.getInstance().addSquare(arguments[1], arguments[2], GameColor.values()[arguments[3]]);
                 break;
