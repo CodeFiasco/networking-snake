@@ -12,9 +12,8 @@ public class ServerHelper {
     public static void sendMessageTo(Socket clientSocket, String message) {
 
         try {
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
-            out.write(message + "\n");
-            out.flush();
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
+            out.println(message);
 
         } catch (IOException e) {
             System.err.println("Client socket closed: " + e.getMessage());

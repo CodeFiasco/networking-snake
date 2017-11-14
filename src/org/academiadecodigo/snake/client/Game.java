@@ -9,6 +9,9 @@ import org.academiadecodigo.snake.client.network.Client;
 import org.academiadecodigo.snake.game_objects.Snake;
 import org.academiadecodigo.snake.game_objects.position.Direction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by codecadet on 14/11/17.
  */
@@ -18,7 +21,7 @@ public final class Game {
 
     private Grid grid;
     private int playerId;
-    private Snake snake;
+    private List<Snake> snakes;
 
     private Client network;
     private KeyboardListener keyboardListener;
@@ -27,6 +30,7 @@ public final class Game {
         network = new Client();
         grid = GridFactory.getGrid();
         keyboardListener = new KeyboardListener();
+        snakes = new ArrayList<>();
     }
 
     public static synchronized Game getInstance() {
@@ -58,9 +62,11 @@ public final class Game {
     }
 
     public void createSnake(int id, int x, int y, Direction direction) {
-        playerId = id;
+        snakes.add(new Snake(grid, x, y, direction, GameColor.values()[id]));
+    }
 
-        snake = new Snake(grid, x, y, direction, GameColor.values()[id]);
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public int getPlayerId() {

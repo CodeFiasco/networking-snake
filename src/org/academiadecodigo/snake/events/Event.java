@@ -13,6 +13,6 @@ public abstract class Event {
 
     @Override
     public String toString() {
-        return "" + eventType.ordinal();
+        return String.valueOf(eventType.ordinal());
     }
 }

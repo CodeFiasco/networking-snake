@@ -8,25 +8,15 @@ import org.academiadecodigo.snake.Constants;
 public class PlayerAssignEvent extends Event{
 
     private int playerId;
-    private int col;
-    private int row;
-    private int directionOrdinal;
 
-    public PlayerAssignEvent(int id, int col, int row, int directionOrdinal) {
+    public PlayerAssignEvent(int id) {
         super(EventType.PLAYER_ASSIGN);
 
         playerId = id;
-        this.col = col;
-        this.row = row;
-        this.directionOrdinal = directionOrdinal;
     }
 
     @Override
     public String toString() {
-        return super.toString() + Constants.EVENT_ARGUMENT_SEPARATOR +
-                       playerId + Constants.EVENT_ARGUMENT_SEPARATOR +
-                       col      + Constants.EVENT_ARGUMENT_SEPARATOR +
-                       row      + Constants.EVENT_ARGUMENT_SEPARATOR +
-                       directionOrdinal;
+        return super.toString() + Constants.EVENT_ARGUMENT_SEPARATOR + playerId;
     }
 }

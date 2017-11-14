@@ -30,13 +30,12 @@ public class ClientHelper {
         return null;
     }
 
-    public static String listenMessage(Socket socket) {
+    public static String listenMessage(BufferedReader bf) {
 
         try {
-            BufferedReader bf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             return bf.readLine();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Socket closed: " + e.getMessage());
             e.printStackTrace();
         }
@@ -56,11 +55,11 @@ public class ClientHelper {
                 break;
 
             case PLAYER_ASSIGN:
-                Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3], Direction.values()[arguments[4]]);
+                Game.getInstance().setPlayerId(arguments[1]);
                 break;
 
-            case OCCUPY_POSITION:
-                Game.getInstance().addSquare(arguments[1], arguments[2], GameColor.values()[arguments[3]]);
+            case CREATE_SNAKE:
+                Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3], Direction.values()[arguments[4]]);
                 break;
         }
     }

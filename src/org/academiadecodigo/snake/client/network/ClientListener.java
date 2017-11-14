@@ -1,5 +1,8 @@
 package org.academiadecodigo.snake.client.network;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 
 /**
@@ -8,21 +11,31 @@ import java.net.Socket;
 public class ClientListener implements Runnable {
 
     private Socket socket;
+    private BufferedReader bf;
 
     public ClientListener(Socket socket) {
         this.socket = socket;
+
+        try {
+            bf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
 
-        String message = "";
+        while (!socket.isClosed()) {
 
-        while (!socket.isClosed() && message != null) {
+            String message = ClientHelper.listenMessage(bf);
 
-            message = ClientHelper.listenMessage(socket);
+            if (message == null) {
+                break;
+            }
+
             ClientHelper.interpretMessage(message);
-
         }
     }
 }

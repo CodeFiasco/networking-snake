@@ -7,7 +7,7 @@ public enum EventType {
 
     GAME_START,
     PLAYER_ASSIGN,
-    OCCUPY_POSITION;
+    CREATE_SNAKE;
 
     public static EventType parseEvent(int eventNumber) {
         return values()[eventNumber];

@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.events.CreateSnakeEvent;
 import org.academiadecodigo.snake.events.GameStartEvent;
 import org.academiadecodigo.snake.events.PlayerAssignEvent;
 import org.academiadecodigo.snake.game_objects.position.Direction;
@@ -52,8 +53,7 @@ public class Server {
         clientSockets = new Socket[numberOfPlayers];
 
         waitClients();
-
-        ServerHelper.broadcast(clientSockets, (new GameStartEvent()).toString());
+        gameStart();
     }
 
     private void waitClients() {
@@ -61,7 +61,7 @@ public class Server {
         for (int i = 0; i < numberOfPlayers; i++) {
 
             clientSockets[i] = getClientConnection();
-            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i, initialSnakePositions[i][0], initialSnakePositions[i][1], initialSnakePositions[i][2])).toString());
+            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i)).toString());
             new Thread(new ClientDispatcher(clientSockets[i])).start();
 
         }
@@ -77,5 +77,16 @@ public class Server {
         }
 
         return null;
+    }
+
+    private void gameStart() {
+
+        for (int i = 0; i < numberOfPlayers; i++) {
+            ServerHelper.broadcast(clientSockets, (new CreateSnakeEvent(i,
+                                                                        initialSnakePositions[i][0],
+                                                                        initialSnakePositions[i][1],
+                                                                        initialSnakePositions[i][2])).toString());
+
+        }
     }
 }
