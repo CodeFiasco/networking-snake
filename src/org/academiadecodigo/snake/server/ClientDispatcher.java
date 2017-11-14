@@ -37,7 +37,7 @@ public class ClientDispatcher implements Runnable {
                 break;
             }
 
-            server.broadcast(message);
+            ServerHelper.interpretMessage(message);
         }
 
     }

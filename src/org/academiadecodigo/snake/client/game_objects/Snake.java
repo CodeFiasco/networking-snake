@@ -76,4 +76,8 @@ public class Snake {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
+
+    public boolean isDead() {
+        return dead;
+    }
 }

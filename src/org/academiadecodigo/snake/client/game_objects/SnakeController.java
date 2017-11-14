@@ -1,6 +1,5 @@
-package org.academiadecodigo.snake.client;
+package org.academiadecodigo.snake.client.game_objects;
 
-import org.academiadecodigo.snake.client.game_objects.Snake;
 import org.academiadecodigo.snake.client.game_objects.position.Direction;
 import org.academiadecodigo.snake.client.ui.graphics.GameColor;
 import org.academiadecodigo.snake.client.ui.graphics.Grid;
@@ -31,5 +30,9 @@ public class SnakeController {
 
     public void changeSnakeDirection(int id, Direction direction) {
         snakes.get(id).setDirection(direction);
+    }
+
+    public boolean isDead(int snakeId) {
+        return snakes.get(snakeId).isDead();
     }
 }

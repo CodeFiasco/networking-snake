@@ -18,6 +18,6 @@ public class Main {
             }
         }
 
-        new Server().start(numberOfPlayers);
+        Server.getInstance().start(numberOfPlayers);
     }
 }

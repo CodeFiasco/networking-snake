@@ -51,6 +51,10 @@ public class NetworkHelper {
             case GAME_START:
                 break;
 
+            case GAME_OVER:
+                Game.getInstance().end();
+                break;
+
             case PLAYER_ASSIGN:
                 Game.getInstance().setPlayerId(arguments[1]);
                 break;

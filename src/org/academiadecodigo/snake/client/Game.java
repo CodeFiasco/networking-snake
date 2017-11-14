@@ -1,15 +1,12 @@
 package org.academiadecodigo.snake.client;
 
 import org.academiadecodigo.snake.Constants;
-import org.academiadecodigo.snake.client.ui.graphics.GameColor;
+import org.academiadecodigo.snake.client.game_objects.SnakeController;
 import org.academiadecodigo.snake.client.ui.graphics.Grid;
 import org.academiadecodigo.snake.client.ui.graphics.GridFactory;
 import org.academiadecodigo.snake.client.network.Network;
-import org.academiadecodigo.snake.client.game_objects.Snake;
 import org.academiadecodigo.snake.client.game_objects.position.Direction;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.academiadecodigo.snake.events.PlayerDeadEvent;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -27,15 +24,20 @@ public final class Game {
     private Network network;
     private InputController inputController;
 
+    private int playerId;
+    private boolean playerAlive;
+
     private Game() {
         network = new Network();
         inputController = new InputController(network);
 
         grid = GridFactory.getGrid();
         snakeController = new SnakeController(grid);
+
+        playerAlive = true;
     }
 
-    public static synchronized Game getInstance() {
+    public synchronized static Game getInstance() {
 
         if (instance == null) {
             instance = new Game();
@@ -55,6 +57,11 @@ public final class Game {
 
     public void moveObjects() {
         snakeController.moveSnakes();
+
+        if(playerAlive && snakeController.isDead(playerId)) {
+            playerAlive = false;
+            network.sendMessage(new PlayerDeadEvent(playerId));
+        }
     }
 
     public void changeSnakeDirection(int id, Direction direction) {
@@ -62,6 +69,12 @@ public final class Game {
     }
 
     public void setPlayerId(int playerId) {
+        this.playerId = playerId;
         inputController.setPlayerId(playerId);
+    }
+
+    public void end() {
+        network.close();
+        System.exit(0);
     }
 }

@@ -2,9 +2,7 @@ package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.Game;
-import org.academiadecodigo.snake.events.CreateSnakeEvent;
-import org.academiadecodigo.snake.events.MoveEvent;
-import org.academiadecodigo.snake.events.PlayerAssignEvent;
+import org.academiadecodigo.snake.events.*;
 import org.academiadecodigo.snake.client.game_objects.position.Direction;
 
 import java.net.ServerSocket;
@@ -17,10 +15,15 @@ import java.util.TimerTask;
  */
 public class Server {
 
+    private static Server instance;
+
     private ServerSocket serverSocket;
+    private Socket[] clientSockets;
 
     private int numberOfPlayers;
-    private Socket[] clientSockets;
+    private int deadPlayers;
+
+    private Timer moveTimer;
 
     private int[][] initialSnakePositions = {
             { 1,                1,                  Direction.RIGHT.ordinal() },
@@ -28,6 +31,19 @@ public class Server {
             { Game.WIDTH - 2,   1,                  Direction.DOWN.ordinal() },
             { 1,                Game.HEIGHT - 2,    Direction.UP.ordinal()}
     };
+
+    private Server() {
+        deadPlayers = 0;
+    }
+
+    public synchronized static Server getInstance() {
+
+        if (instance == null) {
+            instance = new Server();
+        }
+
+        return instance;
+    }
 
     public void start(int numberOfPlayers) {
 
@@ -50,7 +66,7 @@ public class Server {
 
             clientSockets[i] = ServerHelper.getClientConnection(serverSocket);
 
-            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i)).toString());
+            ServerHelper.sendMessageTo(clientSockets[i], new PlayerAssignEvent(i));
 
             Thread clientDispatcher = new Thread(new ClientDispatcher(this, clientSockets[i]));
             clientDispatcher.start();
@@ -67,29 +83,40 @@ public class Server {
 
     private void createInitialObjects() {
         for (int i = 0; i < numberOfPlayers; i++) {
-            ServerHelper.broadcast(clientSockets, (new CreateSnakeEvent(i,
+            ServerHelper.broadcast(clientSockets, new CreateSnakeEvent(i,
                     initialSnakePositions[i][0],
                     initialSnakePositions[i][1],
-                    initialSnakePositions[i][2])).toString());
+                    initialSnakePositions[i][2]));
 
         }
     }
 
     private void gameCycle() {
-        Timer timer = new Timer();
+        moveTimer = new Timer();
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        moveTimer.scheduleAtFixedRate(new TimerTask() {
 
             @Override
             public void run() {
 
-                ServerHelper.broadcast(clientSockets, (new MoveEvent()).toString());
+                ServerHelper.broadcast(clientSockets, new MoveEvent());
 
             }
         }, Constants.GAME_TIMER, Constants.GAME_TIMER);
     }
 
-    public void broadcast(String message) {
-        ServerHelper.broadcast(clientSockets, message);
+    public void playerDied() {
+
+        deadPlayers++;
+
+        if (deadPlayers == numberOfPlayers) {
+            moveTimer.cancel();
+            ServerHelper.broadcast(clientSockets, new GameOverEvent());
+            ServerHelper.closeConnections(clientSockets);
+        }
+    }
+
+    public void broadcastEvent(Event event) {
+        ServerHelper.broadcast(clientSockets, event);
     }
 }

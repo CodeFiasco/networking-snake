@@ -24,7 +24,7 @@ public class InputController implements InputHandler {
 
     @Override
     public void keyPressed(Input input) {
-        network.sendMessage((new SnakeDirectionChangeEvent(playerId, Direction.getDirectionByInput(input))).toString());
+        network.sendMessage(new SnakeDirectionChangeEvent(playerId, Direction.getDirectionByInput(input)));
     }
 
     public void setPlayerId(int playerId) {

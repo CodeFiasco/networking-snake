@@ -1,6 +1,7 @@
 package org.academiadecodigo.snake.client.network;
 
 import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.events.Event;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,7 +34,22 @@ public class Network {
 
     }
 
+    public void sendMessage(Event event) {
+        sendMessage(event.toString());
+    }
+
     public void sendMessage(String message) {
         out.println(message);
+    }
+
+    public void close() {
+
+        try {
+            out.close();
+            socket.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

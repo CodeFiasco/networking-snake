@@ -1,6 +1,11 @@
 package org.academiadecodigo.snake.server;
 
 import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.Utils;
+import org.academiadecodigo.snake.client.game_objects.position.Direction;
+import org.academiadecodigo.snake.events.Event;
+import org.academiadecodigo.snake.events.EventType;
+import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +51,10 @@ public class ServerHelper {
             System.err.println("Network socket closed: " + e.getMessage());
             e.getStackTrace();
         }
+    }
 
+    public static void sendMessageTo(Socket clientSocket, Event event) {
+        sendMessageTo(clientSocket, event.toString());
     }
 
     public static void broadcast(Socket[] clientSockets, String message) {
@@ -55,5 +63,40 @@ public class ServerHelper {
             sendMessageTo(s, message);
         }
 
+    }
+
+    public static void broadcast(Socket[] clientSockets, Event event) {
+        broadcast(clientSockets, event.toString());
+    }
+
+    public static void interpretMessage(String message) {
+
+        int[] arguments = Utils.parseArguments(message.split(Constants.EVENT_ARGUMENT_SEPARATOR));
+        EventType eventType = EventType.parseEvent(arguments[Constants.EVENT_TYPE_SLOT]);
+
+
+        switch (eventType) {
+
+            case SNAKE_DIRECTION_CHANGE:
+                Server.getInstance().broadcastEvent(new SnakeDirectionChangeEvent(arguments[1], Direction.values()[arguments[2]]));
+                break;
+
+            case PLAYER_DEAD:
+                Server.getInstance().playerDied();
+                break;
+        }
+    }
+
+    public static void closeConnections(Socket[] clientSockets) {
+
+        for (Socket s : clientSockets) {
+
+            try {
+                s.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
