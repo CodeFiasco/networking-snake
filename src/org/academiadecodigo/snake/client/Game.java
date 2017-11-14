@@ -1,5 +1,8 @@
 package org.academiadecodigo.snake.client;
 
+import org.academiadecodigo.snake.Constants;
+import org.academiadecodigo.snake.client.gui.Grid;
+import org.academiadecodigo.snake.client.gui.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.snake.client.network.Client;
 
 /**
@@ -9,10 +12,13 @@ public class Game {
 
     private static Game instance;
 
+    private Grid grid;
+
     private Client network;
 
     private Game() {
         network = new Client();
+        grid = new SimpleGfxGrid();
     }
 
     public static synchronized Game getInstance() {
@@ -25,6 +31,7 @@ public class Game {
     }
 
     public void init() {
+        grid.init(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         network.start();
     }
 

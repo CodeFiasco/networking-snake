@@ -11,17 +11,6 @@ public class Client {
 
     private Socket socket;
 
-    public static void main(String[] args) {
-
-        String ipAddress = Constants.DEFAULT_IP_ADDRESS;
-
-        if (args.length > 0) {
-            ipAddress = args[0];
-        }
-
-        new Client().start(ipAddress);
-    }
-
     public void start() {
         start(Constants.DEFAULT_IP_ADDRESS);
     }

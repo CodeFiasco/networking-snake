@@ -11,4 +11,7 @@ public class Constants {
     public static final String DEFAULT_IP_ADDRESS = "localhost";
     public static final int EVENT_TYPE_SLOT = 0;
 
+    public static final int GAME_WIDTH = 500;
+    public static final int GAME_HEIGHT = 500;
+
 }
