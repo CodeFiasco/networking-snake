@@ -1,0 +1,70 @@
+package org.academiadecodigo.snake.server;
+
+import org.academiadecodigo.snake.Constants;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ * Created by codecadet on 14/11/17.
+ */
+public class Server {
+
+    private ServerSocket serverSocket;
+
+    private int numberOfPlayers;
+    private Socket[] clientSockets;
+
+    public static void main(String[] args) {
+
+        int numberOfPlayers = 2;
+
+        if (args.length > 0) {
+            try {
+                numberOfPlayers = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                System.err.println("Argument expected to be a number!");
+            }
+        }
+
+        new Server().start(numberOfPlayers);
+    }
+
+    public void start(int numberOfPlayers) {
+
+        try {
+            serverSocket = new ServerSocket(Constants.PORT_NUMBER);
+
+        } catch (IOException e) {
+            System.err.println("Could not create Server Socket: " + e.getMessage());
+        }
+
+        this.numberOfPlayers = numberOfPlayers;
+        clientSockets = new Socket[numberOfPlayers];
+
+        waitClients();
+    }
+
+    private void waitClients() {
+
+        for (int i = 0; i < numberOfPlayers; i++) {
+
+            clientSockets[i] = getClientConnection();
+            new Thread(new ClientDispatcher(clientSockets[i])).start();
+
+        }
+    }
+
+    private Socket getClientConnection() {
+
+        try {
+            return serverSocket.accept();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+}
