@@ -17,7 +17,7 @@ public class SnakeController {
     }
 
     public void addSnake(int id, int x, int y, Direction direction) {
-        snakes.add(new Snake(x, y, direction, GameColor.values()[id]));
+        snakes.add(new Snake(x, y, direction));
     }
 
     public Position[] getSnakeHeadPositions() {
@@ -42,7 +42,16 @@ public class SnakeController {
         snakes.get(id).setDirection(direction);
     }
 
-    public boolean isDead(int snakeId) {
-        return snakes.get(snakeId).isDead();
+    public int deadSnakes() {
+
+        int deadSnakeNumber = 0;
+
+        for (Snake s : snakes) {
+            if (s.isDead()) {
+                deadSnakeNumber++;
+            }
+        }
+
+        return deadSnakeNumber;
     }
 }

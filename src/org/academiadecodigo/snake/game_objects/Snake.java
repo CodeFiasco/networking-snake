@@ -2,7 +2,6 @@ package org.academiadecodigo.snake.game_objects;
 
 import org.academiadecodigo.snake.client.collision_detector.CollisionDetector;
 import org.academiadecodigo.snake.client.ui.graphics.GameColor;
-import org.academiadecodigo.snake.client.ui.graphics.Grid;
 import org.academiadecodigo.snake.game_objects.position.Direction;
 import org.academiadecodigo.snake.game_objects.position.Position;
 
@@ -21,7 +20,7 @@ public class Snake {
 
     private boolean dead;
 
-    public Snake(int col, int row, Direction direction, GameColor gameColor) {
+    public Snake(int col, int row, Direction direction) {
 
         currentPosition = new Position(col, row);
 
@@ -29,6 +28,7 @@ public class Snake {
         positions.add(currentPosition);
 
         this.direction = direction;
+        dead = false;
     }
 
     public void grow(List<Snake> snakes) {
@@ -42,7 +42,7 @@ public class Snake {
 
         Position newPosition = new Position(col, row);
 
-        if (!CollisionDetector.isEmpty(snakes, newPosition) || newPosition.isOutOfBounds()) {
+        if (!CollisionDetector.freeSpace(snakes, newPosition)) {
             dead = true;
             return;
         }

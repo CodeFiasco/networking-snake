@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class CollisionDetector {
 
-    public static boolean isEmpty(List<Snake> snakes, Position position) {
+    public static boolean freeSpace(List<Snake> snakes, Position position) {
 
         for (Snake s : snakes) {
 
@@ -19,6 +19,6 @@ public class CollisionDetector {
             }
         }
 
-        return true;
+        return !position.isOutOfBounds();
     }
 }

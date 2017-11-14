@@ -23,7 +23,6 @@ public final class Server {
     private Socket[] clientSockets;
 
     private int numberOfPlayers;
-    private int deadPlayers;
 
     private SnakeController snakeController;
 
@@ -37,7 +36,6 @@ public final class Server {
     };
 
     private Server() {
-        deadPlayers = 0;
         snakeController = new SnakeController();
     }
 
@@ -109,6 +107,8 @@ public final class Server {
                 snakeController.moveSnakes();
                 broadcastNewPositions();
 
+                checkGameEnd();
+
             }
         }, Constants.GAME_TIMER, Constants.GAME_TIMER);
     }
@@ -122,13 +122,11 @@ public final class Server {
         }
     }
 
-    public void playerDied() {
+    private void checkGameEnd() {
 
-        deadPlayers++;
-
-        if (deadPlayers == numberOfPlayers) {
+        if (snakeController.deadSnakes() == numberOfPlayers) {
             moveTimer.cancel();
-            ServerHelper.broadcast(clientSockets, new GameOverEvent());
+            broadcastEvent(new GameOverEvent());
             ServerHelper.closeConnections(clientSockets);
         }
     }
