@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client;
+package org.academiadecodigo.snake.client.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
