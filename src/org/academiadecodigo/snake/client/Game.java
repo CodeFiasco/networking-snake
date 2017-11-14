@@ -34,11 +34,13 @@ public class Game {
     public void init() {
         grid.init(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         network.start();
-
-        grid.addSquare(10, 10, 20, GameColor.GREEN);
     }
 
     public void start() {
         System.out.println("start");
+    }
+
+    public void addSquare(int x, int y, GameColor color) {
+        grid.addSquare(x, y, Constants.SQUARE_SIZE, color);
     }
 }

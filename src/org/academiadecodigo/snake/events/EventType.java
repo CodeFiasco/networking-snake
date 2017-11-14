@@ -5,7 +5,8 @@ package org.academiadecodigo.snake.events;
  */
 public enum EventType {
 
-    GAME_START;
+    GAME_START,
+    OCCUPY_POSITION;
 
     public static EventType parseEvent(int eventNumber) {
         return values()[eventNumber];
