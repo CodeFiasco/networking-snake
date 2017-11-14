@@ -3,7 +3,7 @@ package org.academiadecodigo.snake.client;
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.client.gui.Grid;
-import org.academiadecodigo.snake.client.gui.simplegfx.SimpleGfxGrid;
+import org.academiadecodigo.snake.client.gui.GridFactory;
 import org.academiadecodigo.snake.client.network.Client;
 
 /**
@@ -19,7 +19,7 @@ public class Game {
 
     private Game() {
         network = new Client();
-        grid = new SimpleGfxGrid();
+        grid = GridFactory.getGrid();
     }
 
     public static synchronized Game getInstance() {

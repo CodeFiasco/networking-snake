@@ -56,6 +56,7 @@ public class ClientHelper {
 
             case OCCUPY_POSITION:
                 Game.getInstance().addSquare(arguments[1], arguments[2], GameColor.values()[arguments[3]]);
+                break;
         }
     }
 }
