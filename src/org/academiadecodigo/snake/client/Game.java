@@ -4,7 +4,9 @@ import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.client.ui.gui.GameColor;
 import org.academiadecodigo.snake.client.ui.gui.Grid;
 import org.academiadecodigo.snake.client.ui.gui.GridFactory;
-import org.academiadecodigo.snake.client.ui.keyboard.KeyboardListener;
+import org.academiadecodigo.snake.client.ui.input.InputListener;
+import org.academiadecodigo.snake.client.ui.input.InputListenerFactory;
+import org.academiadecodigo.snake.client.ui.simplegfx.KeyboardListener;
 import org.academiadecodigo.snake.client.network.Client;
 import org.academiadecodigo.snake.events.SnakeDirectionChangeEvent;
 import org.academiadecodigo.snake.game_objects.Snake;
@@ -25,12 +27,12 @@ public final class Game {
     private List<Snake> snakes;
 
     private Client network;
-    private KeyboardListener keyboardListener;
+    private InputListener inputListener;
 
     private Game() {
         network = new Client();
         grid = GridFactory.getGrid();
-        keyboardListener = new KeyboardListener();
+        inputListener = InputListenerFactory.getInputListener();
         snakes = new ArrayList<>();
     }
 

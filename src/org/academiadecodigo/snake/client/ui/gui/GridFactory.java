@@ -1,7 +1,7 @@
 package org.academiadecodigo.snake.client.ui.gui;
 
 import org.academiadecodigo.snake.Constants;
-import org.academiadecodigo.snake.client.ui.gui.simplegfx.SimpleGfxGrid;
+import org.academiadecodigo.snake.client.ui.simplegfx.SimpleGfxGrid;
 
 /**
  * Created by codecadet on 14/11/17.

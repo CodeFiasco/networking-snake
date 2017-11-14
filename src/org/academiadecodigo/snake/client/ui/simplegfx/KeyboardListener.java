@@ -1,15 +1,16 @@
-package org.academiadecodigo.snake.client.ui.keyboard;
+package org.academiadecodigo.snake.client.ui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.snake.client.Game;
+import org.academiadecodigo.snake.client.ui.input.InputListener;
 
 /**
  * Created by codecadet on 14/11/17.
  */
-public class KeyboardListener implements KeyboardHandler {
+public class KeyboardListener implements KeyboardHandler, InputListener {
 
     private Keyboard keyboard;
 

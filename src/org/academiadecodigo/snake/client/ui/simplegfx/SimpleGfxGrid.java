@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client.ui.gui.simplegfx;
+package org.academiadecodigo.snake.client.ui.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.snake.Constants;
