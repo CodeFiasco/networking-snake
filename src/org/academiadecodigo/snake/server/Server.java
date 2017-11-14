@@ -3,6 +3,7 @@ package org.academiadecodigo.snake.server;
 import org.academiadecodigo.snake.Constants;
 import org.academiadecodigo.snake.events.GameStartEvent;
 import org.academiadecodigo.snake.events.PlayerAssignEvent;
+import org.academiadecodigo.snake.game_objects.position.Direction;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -19,8 +20,8 @@ public class Server {
     private Socket[] clientSockets;
 
     private int[][] initialSnakePositions = {
-            { 1, 1 },
-            { 18, 18}
+            { 1, 1, Direction.RIGHT.ordinal()},
+            { 18, 18, Direction.LEFT.ordinal()}
     };
 
     public static void main(String[] args) {
@@ -60,7 +61,7 @@ public class Server {
         for (int i = 0; i < numberOfPlayers; i++) {
 
             clientSockets[i] = getClientConnection();
-            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i, initialSnakePositions[i][0], initialSnakePositions[i][1])).toString());
+            ServerHelper.sendMessageTo(clientSockets[i], (new PlayerAssignEvent(i, initialSnakePositions[i][0], initialSnakePositions[i][1], initialSnakePositions[i][2])).toString());
             new Thread(new ClientDispatcher(clientSockets[i])).start();
 
         }

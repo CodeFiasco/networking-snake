@@ -7,6 +7,7 @@ import org.academiadecodigo.snake.client.gui.GridFactory;
 import org.academiadecodigo.snake.client.keyboard.KeyboardListener;
 import org.academiadecodigo.snake.client.network.Client;
 import org.academiadecodigo.snake.game_objects.Snake;
+import org.academiadecodigo.snake.game_objects.position.Direction;
 
 /**
  * Created by codecadet on 14/11/17.
@@ -56,10 +57,10 @@ public final class Game {
         System.out.println(key);
     }
 
-    public void createSnake(int id, int x, int y) {
+    public void createSnake(int id, int x, int y, Direction direction) {
         playerId = id;
 
-        snake = new Snake(grid, x, y, GameColor.values()[id]);
+        snake = new Snake(grid, x, y, direction, GameColor.values()[id]);
     }
 
     public int getPlayerId() {

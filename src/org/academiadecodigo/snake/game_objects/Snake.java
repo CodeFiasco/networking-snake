@@ -2,7 +2,8 @@ package org.academiadecodigo.snake.game_objects;
 
 import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.client.gui.Grid;
-import org.academiadecodigo.snake.position.Position;
+import org.academiadecodigo.snake.game_objects.position.Direction;
+import org.academiadecodigo.snake.game_objects.position.Position;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,17 +17,30 @@ public class Snake {
     private GameColor gameColor;
     private Grid grid;
 
-    public Snake(Grid grid, int col, int row, GameColor gameColor) {
+    private int col;
+    private int row;
+    private Direction direction;
+
+    public Snake(Grid grid, int col, int row, Direction direction, GameColor gameColor) {
         positions = new LinkedList<>();
+
+        this.col = col;
+        this.row = row;
 
         positions.add(new Position(col, row));
         this.gameColor = gameColor;
 
         this.grid = grid;
         grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
+
+        this.direction = direction;
     }
 
-    public void grow(int col, int row) {
+    public void grow() {
+
+        col += direction.getHorizontal();
+        row += direction.getVertical();
+
         positions.add(new Position(col, row));
         grid.addSquare(grid.colToX(col), grid.rowToY(row), gameColor);
     }

@@ -5,6 +5,7 @@ import org.academiadecodigo.snake.Utils;
 import org.academiadecodigo.snake.client.Game;
 import org.academiadecodigo.snake.client.gui.GameColor;
 import org.academiadecodigo.snake.events.EventType;
+import org.academiadecodigo.snake.game_objects.position.Direction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class ClientHelper {
                 break;
 
             case PLAYER_ASSIGN:
-                Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3]);
+                Game.getInstance().createSnake(arguments[1], arguments[2], arguments[3], Direction.values()[arguments[4]]);
                 break;
 
             case OCCUPY_POSITION:

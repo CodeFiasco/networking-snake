@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.position;
+package org.academiadecodigo.snake.game_objects.position;
 
 /**
  * Created by codecadet on 14/11/17.

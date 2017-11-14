@@ -10,13 +10,15 @@ public class PlayerAssignEvent extends Event{
     private int playerId;
     private int col;
     private int row;
+    private int directionOrdinal;
 
-    public PlayerAssignEvent(int id, int col, int row) {
+    public PlayerAssignEvent(int id, int col, int row, int directionOrdinal) {
         super(EventType.PLAYER_ASSIGN);
 
         playerId = id;
         this.col = col;
         this.row = row;
+        this.directionOrdinal = directionOrdinal;
     }
 
     @Override
@@ -24,6 +26,7 @@ public class PlayerAssignEvent extends Event{
         return super.toString() + Constants.EVENT_ARGUMENT_SEPARATOR +
                        playerId + Constants.EVENT_ARGUMENT_SEPARATOR +
                        col      + Constants.EVENT_ARGUMENT_SEPARATOR +
-                       row      + Constants.EVENT_ARGUMENT_SEPARATOR;
+                       row      + Constants.EVENT_ARGUMENT_SEPARATOR +
+                       directionOrdinal;
     }
 }
