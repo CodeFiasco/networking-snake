@@ -1,8 +1,6 @@
 package org.academiadecodigo.snake.game_objects;
 
 import org.academiadecodigo.snake.game_objects.position.Direction;
-import org.academiadecodigo.snake.client.ui.graphics.GameColor;
-import org.academiadecodigo.snake.client.ui.graphics.Grid;
 import org.academiadecodigo.snake.game_objects.position.Position;
 
 import java.util.ArrayList;

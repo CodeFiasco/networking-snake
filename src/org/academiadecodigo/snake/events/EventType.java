@@ -7,7 +7,6 @@ public enum EventType {
 
     GAME_START,
     PLAYER_ASSIGN,
-    CREATE_SNAKE,
     OCCUPY_SQUARE,
     SNAKE_DIRECTION_CHANGE,
     GAME_OVER;

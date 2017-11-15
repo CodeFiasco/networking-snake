@@ -4,7 +4,6 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.snake.client.Game;
 import org.academiadecodigo.snake.client.ui.input.Input;
 import org.academiadecodigo.snake.client.ui.input.InputHandler;
 import org.academiadecodigo.snake.client.ui.input.InputListener;
