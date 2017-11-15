@@ -20,7 +20,7 @@ public class NetworkHelper {
             return new Socket(ipAddress, portNumber);
 
         } catch (IOException e) {
-            System.err.println("Could not establish connection: " + e.getMessage());
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
 
@@ -33,7 +33,7 @@ public class NetworkHelper {
             return bf.readLine();
 
         } catch (Exception e) {
-            System.out.println("Socket closed: " + e.getMessage());
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
 
@@ -59,7 +59,7 @@ public class NetworkHelper {
                 break;
 
             case OCCUPY_SQUARE:
-                Game.getInstance().occupySquare(arguments[1], arguments[2], arguments[3]);
+                Game.getInstance().colorSquare(arguments[1], arguments[2], arguments[3]);
                 break;
         }
     }

@@ -17,13 +17,11 @@ public final class Game {
     public static final int HEIGHT = Constants.GAME_HEIGHT / Constants.SQUARE_SIZE;
 
     private Grid grid;
-
     private Network network;
     private InputController inputController;
 
     private Game() {
         grid = GridFactory.getGrid();
-
         network = new Network();
         inputController = new InputController(network);
     }
@@ -38,6 +36,7 @@ public final class Game {
     }
 
     public void init() {
+
         grid.init(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         network.start();
     }
@@ -47,11 +46,12 @@ public final class Game {
     }
 
     public void end() {
+
         network.close();
         System.exit(0);
     }
 
-    public void occupySquare(int col, int row, int gameColorOrdinal) {
+    public void colorSquare(int col, int row, int gameColorOrdinal) {
 
         GameColor gameColor = GameColor.values()[gameColorOrdinal];
         grid.addSquare(col, row, gameColor);
