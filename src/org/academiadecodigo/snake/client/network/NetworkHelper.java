@@ -47,9 +47,6 @@ public class NetworkHelper {
 
         switch (eventType) {
 
-            case GAME_START:
-                break;
-
             case GAME_OVER:
                 Game.getInstance().end();
                 break;
