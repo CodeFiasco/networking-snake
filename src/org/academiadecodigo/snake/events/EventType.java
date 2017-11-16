@@ -5,7 +5,6 @@ package org.academiadecodigo.snake.events;
  */
 public enum EventType {
 
-    GAME_START,
     PLAYER_ASSIGN,
     OCCUPY_SQUARE,
     SNAKE_DIRECTION_CHANGE,
