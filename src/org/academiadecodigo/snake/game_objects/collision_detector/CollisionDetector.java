@@ -1,4 +1,4 @@
-package org.academiadecodigo.snake.client.collision_detector;
+package org.academiadecodigo.snake.game_objects.collision_detector;
 
 import org.academiadecodigo.snake.game_objects.Snake;
 import org.academiadecodigo.snake.game_objects.position.Position;
