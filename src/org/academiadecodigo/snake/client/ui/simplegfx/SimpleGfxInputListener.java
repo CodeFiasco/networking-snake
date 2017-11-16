@@ -11,12 +11,12 @@ import org.academiadecodigo.snake.client.ui.input.InputListener;
 /**
  * Created by codecadet on 14/11/17.
  */
-public class KeyboardListener implements KeyboardHandler, InputListener {
+public class SimpleGfxInputListener implements KeyboardHandler, InputListener {
 
     private Keyboard keyboard;
     private InputHandler inputHandler;
 
-    public KeyboardListener() {
+    public SimpleGfxInputListener() {
 
         keyboard = new Keyboard(this);
 
