@@ -29,10 +29,10 @@ public final class Server {
     private Timer moveTimer;
 
     private int[][] initialSnakePositions = {
-            { 1,                1,                  Direction.RIGHT.ordinal() },
-            { Game.WIDTH - 2,   Game.HEIGHT - 2,    Direction.LEFT.ordinal() },
-            { Game.WIDTH - 2,   1,                  Direction.DOWN.ordinal() },
-            { 1,                Game.HEIGHT - 2,    Direction.UP.ordinal()}
+            { 5,                5,                  Direction.RIGHT.ordinal() },
+            { Game.WIDTH - 6,   Game.HEIGHT - 6,    Direction.LEFT.ordinal() },
+            { Game.WIDTH - 6,   5,                  Direction.DOWN.ordinal() },
+            { 5,                Game.HEIGHT - 6,    Direction.UP.ordinal()}
     };
 
     private Server() {

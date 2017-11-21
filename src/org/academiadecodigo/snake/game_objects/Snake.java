@@ -65,6 +65,11 @@ public class Snake {
     }
 
     public void setDirection(Direction direction) {
+
+        if (this.direction.getOpposite() == direction) {
+            return;
+        }
+
         this.direction = direction;
     }
 
